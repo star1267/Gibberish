@@ -1,0 +1,11 @@
+
+C:\Users\testarr> 
+
+	C:\Users\testarr\Documents\pythoncode\super_simple_template-main\.venv\Scripts	\Activate
+
+
+C:\Users\testarr>
+	cd C:\Users\testarr\Documents\pythoncode\super_simple_template-main
+
+C:\Users\testarr\Documents\pythoncode\super_simple_template-main
+	code . 

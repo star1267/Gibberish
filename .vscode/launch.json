@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Module",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "sentences",
+            "args":["--num-words","50000","--dict-path","./wordlist.json","--sent-path","./sentences.csv", 
+            "--num-sent", "72", "--words-insent", "8", "--one-syllwords", "7", "--two-syllwords", "1"],
+            "justMyCode": false
+        }
+    ]
+}
+    
