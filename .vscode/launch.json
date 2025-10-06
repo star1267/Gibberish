@@ -7,7 +7,8 @@
             "request": "launch",
             "module": "sentences",
             "args":["--num-words","50000","--dict-path","./wordlist.json","--sent-path","./sentences.csv", 
-            "--num-sent", "72", "--words-insent", "8", "--one-syllwords", "7", "--two-syllwords", "1"],
+            "--wav-path" , "sentence", 
+            "--num-sent", "72", "--words-insent", "11", "--one-syllwords", "11", "--two-syllwords", "0"],
             "justMyCode": false
         }
     ]

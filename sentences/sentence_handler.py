@@ -1,7 +1,8 @@
 import random 
 
 def build_sentence(num_sent, words_insent, one_syllwords, two_syllwords, words): 
-# @@@ TODO DOC STRING
+    """Creates a list of lists of sentences, adds # of one syll words, adds # two syll words, shuffles sentences, 
+    joins to one string, returns one syl, two syl and sentences. """
 
     # Initionates a list of lists with numsent rows 
     sent = [ []*words_insent for i in range (num_sent)]

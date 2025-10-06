@@ -11,8 +11,8 @@ import json
 import time 
 
 # // TODO I dont know what this line does 
+    # I think this is part of inputting values 
 app = typer.Typer() 
-
 
 
 URL = "https://www.soybomb.com/tricks/words/" #This is the URL for a website that makes gibberish sentences 
@@ -20,7 +20,7 @@ URL = "https://www.soybomb.com/tricks/words/" #This is the URL for a website tha
 #Path is the name of the csv file the sentences are stored in. Num_sent: number of sentences that are generated. 
 # one_syllwords: # one syll words, two_syllwords: # two syllable words, words: loads the dict of words 
 def _get_sentences(path:Path, num_sent, words_insent, one_syllwords, two_syllwords, words): 
-    # @@@ TODO DOC STRING 
+    """Reads to see if there is a file with sentences alread, if goes to sentences builder function"""
     #funtion that reads the csv if it exists
     sent = read_csv(path) 
     # if the sentence list already exists it prints a message saying "Sentence file already exists"
@@ -41,7 +41,7 @@ def _get_sentences(path:Path, num_sent, words_insent, one_syllwords, two_syllwor
 
     
 def _get_words(path:Path,num_words:int):
-    # //TODO DOC STRING 
+    """This function see's if the list of words exist, if not it scraps the website, stores and organizes the words."""
     # reads in the json word file if it exisits 
     words = readjson(path)
     # If the word file does not already exist it moves to this step 
@@ -66,8 +66,10 @@ def _get_words(path:Path,num_words:int):
         write_json(path, words)
     # returns the dic of words 
     return words
+print(_get_words.__doc__)
 
-@app.command() #//TODO I dont know what this does 
+
+@app.command() #//TODO I dont know what this does but I think it makes it so that the things below can be put in as inputs 
 
 def run(
     # Input number of words to find 
@@ -80,6 +82,8 @@ def run(
     sent_path: Annotated[
         str, typer.Option(prompt="Path to the sorted sentence list")
     ] = r".\gibberishsentences.csv",
+    wav_path: Annotated[ 
+        str, typer.Option(prompt= "Name of wav files")] = 'sentence', 
     # Input number of sentences to create, Number of words in sentences, number of one syl and number 2 syl. 
     num_sent: Annotated[int, typer.Option(prompt="Number of sentences to make")] = 72,
     words_insent: Annotated[int, typer.Option(prompt="Number of words per sentence")] = 8,
@@ -92,10 +96,10 @@ def run(
     # Takes that dict of words and uses it to make sentences 
     sent = _get_sentences(Path(sent_path), num_sent, words_insent, one_syllwords, two_syllwords, words) 
     # takes those sentences and text to speech them 
-    tts = _text_to_speech(sent, num_sent)
+    tts = _text_to_speech(sent, num_sent, wav_path)
 
   
-# //TODO I dont know what this does 
+# //TODO I dont know what this does but I think it makes it so you can call the inputs 
 if __name__ == "__main__":
     app()
 # python -m sentences --num-words 10 --dict-path .\words.json --sent-path .\sent.json

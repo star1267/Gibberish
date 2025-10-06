@@ -6,25 +6,10 @@ onesyll=[]
 twosyll = []
 words =[]
 def split_words(tag):
-    # //TODO Doc string 
+    """This function estimates the number of syllables of each word in the dict."""
     
     # Counts how many set of vowels there are seperated by consinents. So individual vowels. and counts that as a syllable 
     syllables = re.findall(r'[aeiouy]+', tag) 
     
     length=len(syllables)
     return (length)
-    #if len(syllables) == 1: 
-        #return syllables
-    
-
-
-
-
-        # onesyll.append(tag)
-    # if len(syllables) == 2: 
-    #     twosyll.append(tag)
-
-        
-
-
-#calculatae # of syllables 

@@ -7,7 +7,7 @@ import csv
 #creates an empty dict to store the words in the word file 
 filecontent = {}
 def readjson(path:Path):
-# @@@ TODO DOC STRING
+    """This function checks to see if there is already a json file under the name. If so it reads the file and returns the content of the file."""
 
     # Checks if the json file exists. If not it returns nothing and the function is done 
     if not os.path.exists(path): 
@@ -24,8 +24,7 @@ def readjson(path:Path):
     ...
 
 def write_json(path:Path,content:Dict):
-# @@@ TODO DOC STRING
-#  
+    """This creates a json file and write the dict to that file."""
     #
     with open(path, 'a') as output:
         json.dump (content, output, indent =2)
@@ -33,7 +32,7 @@ def write_json(path:Path,content:Dict):
     ...
 
 def read_csv(path:Path):
-    # @@@ TODO DOC STRING 
+    """This checks if there is a csv file with sentences. if there is already a file it reads the file and returns content """
 
     # Creates a list for just the clean sentences 
     cleansent = []
@@ -56,7 +55,7 @@ def read_csv(path:Path):
 
 
 def write_csv(path, sentences): 
-# @@@ TODO DOC STRING 
+    """This creates a csv and then write the sentences to that csv"""
     # Opens the csv file to write to it 
     with open(path, 'w', newline='') as f: 
         # //TODO I dont know what this does 
