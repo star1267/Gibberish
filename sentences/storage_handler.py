@@ -26,7 +26,7 @@ def readjson(path:Path):
 def write_json(path:Path,content:Dict):
     """This creates a json file and write the dict to that file."""
     #
-    with open(path, 'a') as output:
+    with open(path, 'w') as output:
         json.dump (content, output, indent =2)
 
     ...

@@ -2,11 +2,11 @@ from pathlib import Path
 import typer
 from typing_extensions import Annotated
 from typing import Dict
-from .download_handler import download
+from .download_handler import download, downloadIEEE
 from .word_handler import split_words
 from .sentence_handler import build_sentence
-from .storage_handler import readjson, write_json, write_csv, read_csv 
-from .text_to_speech import _text_to_speech
+from .storage_handler import readjson, write_json, write_csv, read_csv
+from .text_to_speech import _text_to_speech, _IEEE_to_speech
 import json
 import time 
 
@@ -14,8 +14,8 @@ import time
     # I think this is part of inputting values 
 app = typer.Typer() 
 
-
 URL = "https://www.soybomb.com/tricks/words/" #This is the URL for a website that makes gibberish sentences 
+HarvardLink = "https://www.cs.columbia.edu/~hgs/audio/harvard.html" #This is a link to the harvard sentences 
 
 #Path is the name of the csv file the sentences are stored in. Num_sent: number of sentences that are generated. 
 # one_syllwords: # one syll words, two_syllwords: # two syllable words, words: loads the dict of words 
@@ -68,6 +68,16 @@ def _get_words(path:Path,num_words:int):
     return words
 print(_get_words.__doc__)
 
+def IEEEsentences(HarvardLink): 
+    json = "./IEEEsentences.json" #Need to add this as an input 
+    IEEE = readjson(json)
+    if not IEEE: 
+        IEEE = downloadIEEE(HarvardLink)
+        write_json(json , IEEE)
+    _IEEE_to_speech(IEEE)
+
+
+
 
 @app.command() #//TODO I dont know what this does but I think it makes it so that the things below can be put in as inputs 
 
@@ -97,6 +107,13 @@ def run(
     sent = _get_sentences(Path(sent_path), num_sent, words_insent, one_syllwords, two_syllwords, words) 
     # takes those sentences and text to speech them 
     tts = _text_to_speech(sent, num_sent, wav_path)
+
+    #Harvard Sentences 
+    IEEEsentences(HarvardLink)
+    #@@@Todo, make it so that it reads the file if it already exists 
+
+
+
 
   
 # //TODO I dont know what this does but I think it makes it so you can call the inputs 

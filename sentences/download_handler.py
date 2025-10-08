@@ -20,3 +20,16 @@ def download(url, iterations):
                 words.append(gibberish.text)
     # Returns the dict of words 
     return words 
+
+
+def downloadIEEE(site): 
+    IEEE=[]
+    page = requests.get(site)
+        # //TODO DOnt know what this does but I think it takes just the text from the webiste 
+    soup = BeautifulSoup(page.text, "html.parser")
+        # Finds all the words that are bold
+    HarvardSentences = soup.find_all("li")
+    for sentences in HarvardSentences: 
+        IEEE.append(sentences.text)
+
+    return (IEEE)
