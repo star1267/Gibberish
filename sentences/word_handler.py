@@ -1,6 +1,6 @@
 import re 
 import os
-import split_words
+#import split_words
 
 onesyll=[]
 twosyll = []

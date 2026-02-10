@@ -6,9 +6,11 @@ from .download_handler import download, downloadIEEE
 from .word_handler import split_words
 from .sentence_handler import build_sentence
 from .storage_handler import readjson, write_json, write_csv, read_csv
-from .text_to_speech import _text_to_speech, _IEEE_to_speech
+from .text_to_speech import _IEEE_to_speech
+from .GTTSPractice import gtts 
 import json
 import time 
+
 
 # // TODO I dont know what this line does 
     # I think this is part of inputting values 
@@ -77,8 +79,6 @@ def IEEEsentences(HarvardLink):
     _IEEE_to_speech(IEEE)
 
 
-
-
 @app.command() #//TODO I dont know what this does but I think it makes it so that the things below can be put in as inputs 
 
 def run(
@@ -106,14 +106,12 @@ def run(
     # Takes that dict of words and uses it to make sentences 
     sent = _get_sentences(Path(sent_path), num_sent, words_insent, one_syllwords, two_syllwords, words) 
     # takes those sentences and text to speech them 
-    tts = _text_to_speech(sent, num_sent, wav_path)
-
+    #tts = _get_tts(sent) 
+    #google =gtts (sent)
+    tts = _IEEE_to_speech(sent) 
     #Harvard Sentences 
-    IEEEsentences(HarvardLink)
+    #IEEEsentences(HarvardLink)
     #@@@Todo, make it so that it reads the file if it already exists 
-
-
-
 
   
 # //TODO I dont know what this does but I think it makes it so you can call the inputs 
