@@ -9,19 +9,10 @@ age
 key.txt
 secrets.yaml
 secrets.age
-WavStorage
-wordstorage 
 .sops/*
 !.sops/*.enc.*
 *wav 
-
-
-
-
-
-
-
-
+Storage 
 
 # C extensions
 *.so
