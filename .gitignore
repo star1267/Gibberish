@@ -11,6 +11,9 @@ secrets.yaml
 secrets.age
 WavStorage
 wordstorage 
+.sops/*
+!.sops/*.enc.*
+*wav 
 
 
 
