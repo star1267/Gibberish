@@ -3,6 +3,13 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+
+Storage/
+age/
+key.txt
+secrets.age
+secrets.yaml
+
 # C extensions
 *.so
 
