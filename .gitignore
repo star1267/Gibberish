@@ -7,13 +7,12 @@ __pycache__/
 
 age 
 key.txt
-secrets.yaml
-secrets.age
+secrets.yaml 
 .sops/*
 !.sops/*.enc.*
 *wav 
 Storage 
-
+*.txt
 # C extensions
 *.so
 

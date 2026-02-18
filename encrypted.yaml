@@ -1,0 +1,18 @@
+secrets:
+    elevenlabs:
+        apikey: ENC[AES256_GCM,data:P+hHGYQGwpINoMKagJNLke6A+QOXmNYWDO+FngnPsgtTl5rhfJkNGs3yo7b3DHUl7K8aSs4u82Jois/dViU=,iv:ql601T8HlPVL3+NDXPmOE+sifqfJ5fCBloQN3yEzqLE=,tag:7pYkNG01ri+k0otRkoi9RA==,type:str]
+sops:
+    age:
+        - recipient: age19aq5c0x8gh6d6ul5rdvg3ue9gr2ldtj6ede53fqgdhc77e3x8ynsp9rwu2
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBXY1VoUWFBeXU5c1RFMFc4
+            VmlwV0dhOGx2S3crRUh0Y2JCMC81UFhucXg4CjIvZWhMQXpDT1pxZnZvalptUzZU
+            ZjBTc3B1bmVkMmxQUkFwbEhTUDJrQVkKLS0tIEtVTkErYmtuV2ZmVXdYZTFTcFQy
+            aUU4SjVjS2pZVDRyNVk3ZS9EZjJ3cFkKiJXf7lmv1C83IUQahvbFOc9hiS45lJPx
+            A9BnPjyR+Qnr3EwCdSU8iFjmsbYpOiXa090c/Y9wvt1S7U1MBt4tqw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-02-18T14:56:30Z"
+    mac: ENC[AES256_GCM,data:eQMKEzHEet+V5KuMNOhWbDS8sbrMZS5lRHwNeDrYSo9hq4NjoNiA4tm1llplSKe5+6u+9Ccv4c6XdcrfuglYkVT+LNtY5DMoDW2T8ejzzxamT6qJpMDxYM7goXfuqhANZpQVaIB74ChkUm+D4GIacVaJ0pELldfNNJVIdtwUdwA=,iv:VZbhwcEeWMm/eB8k7xTd/QPIiKcYs2cXgEYMoma5UFw=,tag:HFR6rq54ONnY3r5b+wsxkw==,type:str]
+    encrypted_regex: ^(id|secret|bootstraptoken|secretboxencryptionsecret|token|ca|crt|key)
+    version: 3.11.0
