@@ -113,7 +113,7 @@ def run(
     #tts = _get_tts(sent) 
     #google =gtts (sent)
     IEEEsentences(HarvardLink)
-    tts = _IEEE_to_speech(IEEE) 
+    tts = _IEEE_to_speech(sent) 
     #Harvard Sentences 
     
     #@@@Todo, make it so that it reads the file if it already exists 

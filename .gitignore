@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+#__pycache__/
 *.py[codz]
 *$py.class
 
@@ -13,6 +13,7 @@ secrets.yaml
 *wav 
 Storage 
 *.txt
+*mp3
 # C extensions
 *.so
 
