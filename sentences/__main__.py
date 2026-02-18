@@ -48,6 +48,10 @@ def _get_words(path:Path,num_words:int):
     words = readjson(path)
     # If the word file does not already exist it moves to this step 
     if not words:
+        print ("wordlist not found ")
+        print ("the rest of this needs to be fixed")
+
+        # //TODO  this needs to be fixed because the website was changed so it is not reading any words 
         # creates an empty dic for words 
         words = {}
         # iterations is the number of words requested/50 because there is 50 words on each reloaded soybomb page 
