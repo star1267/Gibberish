@@ -112,9 +112,10 @@ def run(
     # takes those sentences and text to speech them 
     #tts = _get_tts(sent) 
     #google =gtts (sent)
-    tts = _IEEE_to_speech(sent) 
+    IEEEsentences(HarvardLink)
+    tts = _IEEE_to_speech(IEEE) 
     #Harvard Sentences 
-    #IEEEsentences(HarvardLink)
+    
     #@@@Todo, make it so that it reads the file if it already exists 
 
   
