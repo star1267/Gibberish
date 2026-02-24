@@ -5,8 +5,6 @@ import os
 from datetime import datetime
 from pathlib import Path 
 
-#//TODO Change this so that it is saving with todays date and to a new folder 
-    #and probably dont need to check if it exists then 
 
 def _text_to_speech(sent, num_sent, wav_path):
     """Takes the sentences, tts them and save as wav files"""
@@ -60,4 +58,3 @@ def _IEEE_to_speech(IEEE):
 
 
 
-#@///TODO save Harvard sentences into a json 

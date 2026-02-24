@@ -6,7 +6,7 @@ from .download_handler import download, downloadIEEE
 from .word_handler import split_words
 from .sentence_handler import build_sentence
 from .storage_handler import readjson, write_json, write_csv, read_csv
-from .text_to_speech import _IEEE_to_speech
+from .text_to_speech import _IEEE_to_speech, _gibberish_to_speech
 from .GTTSPractice import gtts 
 import json
 import time 
@@ -80,7 +80,8 @@ def IEEEsentences(HarvardLink):
     if not IEEE: 
         IEEE = downloadIEEE(HarvardLink)
         write_json(json , IEEE)
-    _IEEE_to_speech(IEEE)
+
+    return IEEE 
 
 
 @app.command() #//TODO I dont know what this does but I think it makes it so that the things below can be put in as inputs 
@@ -112,8 +113,10 @@ def run(
     # takes those sentences and text to speech them 
     #tts = _get_tts(sent) 
     #google =gtts (sent)
-    IEEEsentences(HarvardLink)
-    tts = _IEEE_to_speech(sent) 
+    IEEE= IEEEsentences(HarvardLink)
+    ttsIEEE = _IEEE_to_speech(IEEE) 
+    ttsgib = _gibberish_to_speech(sent)
+
     #Harvard Sentences 
     
     #@@@Todo, make it so that it reads the file if it already exists 
