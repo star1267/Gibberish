@@ -1,43 +1,53 @@
 import yaml 
 import os
-import uuid
 from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
+from datetime import datetime
+from pathlib import Path 
+
+#import time 
+#import uuid
 
 def _IEEE_to_speech(words): 
     ## Load encrypted file 
-    with open ('secrets.yaml', 'r') as f: 
+    with open ('secrets.yaml', 'r') as f:  #opens yaml with apikey
         secrets = yaml.safe_load(f)
-    apikey = (secrets ['secrets'] ['elevenlabs']['apikey'])
+    apikey = (secrets ['secrets'] ['elevenlabs']['apikey']) #read and store API key
 
-    elevenlabs = ElevenLabs(
+    elevenlabs = ElevenLabs( #tells 11labs what the api key is 
         api_key= apikey,
     )
+    current_time = datetime.now().strftime("%Y-%m-%d-%I-%M-%S") #calculates current time 
+    foldername = f'Wav{current_time}' #unique file name
+    os.mkdir (foldername) #unique folder 
 
-    ##/TODO Make this a for loop so that each entry in IEEE gets looped through and saved 
-    response = elevenlabs.text_to_speech.convert(
-        voice_id="pNInz6obpgDQGcFmaJgB", # Adam pre-made voice
-        output_format="mp3_22050_32",
-        text= words[2], 
-        #text = "hello world", 
-        model_id="eleven_turbo_v2_5", # use the turbo model for low latency
-        # Optional voice settings that allow you to customize the output
-        voice_settings=VoiceSettings(
-            stability=0.1,
-            similarity_boost=1.0,
-            style=0.0,
-            use_speaker_boost=True,
-            speed=1.0,
-        ),
-    )
- #/ TODO make the wav file name unique 
-    save_file_path = f"practice.wav"
-    # Writing the audio to a file
-    with open(save_file_path, "wb") as f:
-        for chunk in response:
-            if chunk:
-                f.write(chunk)
-    print(f"{save_file_path}: A new audio file was saved successfully!")
-    # Return the path of the saved audio file
+    for i in range (len(words)): #Loops through each sentence 
+        response = elevenlabs.text_to_speech.convert( ##creates a variable response with contains the audio, calls 11labs function
+            voice_id="pNInz6obpgDQGcFmaJgB", # sets voice to "Adam"
+            output_format="wav", 
+            text= words[i], 
+            model_id="eleven_turbo_v2_5", # use the turbo model for low latency
+            # Optional voice settings that allow you to customize the output
+            voice_settings=VoiceSettings(
+                stability=0.1, #(lower = more expressive, higher = less expressive) 0-1 
+                similarity_boost=1.0, #Lower = less like original voice; higher = more accurate to voice
+                style=0.0, #Lower = neutral; higher = more stylized or dramatic
+                use_speaker_boost=True, #Turns the speaker boost on/off; helps with projection and clarity
+                speed=1.0, #1.0 = normal speed; below 1 = slower; above 1 = faster
+            ),
+        )
+        
+        #filename = f'IEEE_{current_time}_{i+1}.wav' #Unique file name with current time
+        filename = f'IEEE{i+1}.wav'
+        save_file_path = os.path.join(foldername, filename) #Makes file save to the new folder 
+        # Writing the audio to a file
+        with open(save_file_path, "wb") as f:
+            for chunk in response:
+                if chunk:
+                    f.write(chunk)
+        print(f"{save_file_path}: A new audio file was saved successfully!")
+        # Return the path of the saved audio file
     return save_file_path
     ... 
+
+
