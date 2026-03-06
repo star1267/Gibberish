@@ -22,8 +22,25 @@
         "titleBar.activeForeground": "#15202b",
         "titleBar.border": "#07d0ef",
         "titleBar.inactiveBackground": "#07d0ef99",
-        "titleBar.inactiveForeground": "#15202b99"
+        "titleBar.inactiveForeground": "#15202b99", 
+        
     },
-    "peacock.color": "#07d0ef"
+    "peacock.color": "#07d0ef", 
 
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "name": "Python Docstrings",
+                "scope": [
+                    "string.quoted.docstring.multi.python",
+                    "string.quoted.docstring.multi.python punctuation.definition.string.begin.python",
+                    "string.quoted.docstring.multi.python punctuation.definition.string.end.python"
+                ],
+                "settings": {
+                    "foreground":"#FFB6C1",
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    }
 }
