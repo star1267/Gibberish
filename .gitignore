@@ -8,6 +8,7 @@
 age 
 key.txt
 secrets.yaml 
+*yaml
 .sops/*
 !.sops/*.enc.*
 *wav 
@@ -16,6 +17,8 @@ Storage
 *mp3
 # C extensions
 *.so
+WavStorage
+
 
 # Distribution / packaging
 .Python
@@ -225,5 +228,3 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-
-

@@ -121,24 +121,22 @@ def run(
     )
     IEEE = IEEEsentences(HarvardLink)
 
-    voice="pNInz6obpgDQGcFmaJgB",  # sets voice to "Adam"
-    nameIEEE = f'AdamGib.mp3'
-    nameGib = f'AdamGib.mp3'
-    # voice="FLpz0UhC9a7CIfUSBo6S",  # sets voice to "Clancy"
-    # nameIEEE = f'ClancyGib.mp3'
-    # nameGib = f'ClancyGib.mp3'
-    # voice= "hpp4J3VqNfWAUOO0d1Us", # sets voice to Bella
-    # nameIEEE = f'BellaGib.mp3'
-    # nameGib = f'BellaGib.mp3'
-    #voice_id= "WZlYpi1yf6zJhNWXih74", #Hope
-    #nameIEEE = f'HopeGib.mp3'
-    #nameGib = f'HopeGib.mp3'
-    #voice_id= "3nDq4c7a9Pk3q5rxbMJH" , #matthew
-    #nameIEEE = f'MatthewGib.mp3'
-    #nameGib = f'MatthewGib.mp3'
+    #voice="pNInz6obpgDQGcFmaJgB"  # sets voice to "Adam"
+    #name = "Adam0.1"
+    #name = 'Clancy0.6'
+    #voice="FLpz0UhC9a7CIfUSBo6S"  # sets voice to "Clancy"
+    #voice= "hpp4J3VqNfWAUOO0d1Us" # sets voice to Bella
+    #name = 'Bella01'
+    #voice= "3nDq4c7a9Pk3q5rxbMJH" #matthew
+    #name = "MattTest"
+    #voice = "EXAVITQu4vr4xnSDxMaL"
+    #name = 'sarah1'
+    voice= "SAz9YHcvj6GT2YYXdXww"
+    name = 'River'
+
 #// TODO Make it easier to change the Voice and name of the file 
-    _IEEE_to_speech(IEEE, voice, nameIEEE)
-    _gibberish_to_speech(sent, voice, nameGib)
+    _IEEE_to_speech(IEEE, voice, name)
+    _gibberish_to_speech(sent, voice, name)
 
 
 
