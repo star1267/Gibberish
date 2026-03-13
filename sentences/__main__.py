@@ -5,7 +5,7 @@ from .download_handler import download, downloadIEEE
 from .word_handler import split_words
 from .sentence_handler import build_sentence
 from .storage_handler import readjson, write_json, write_csv, read_csv, read_voices
-from .text_to_speech import _IEEE_to_speech, _gibberish_to_speech
+from .text_to_speech import texttospeech
 import time
 
 
@@ -124,12 +124,15 @@ def run(
     )
     #Get IEEE sentences
     IEEE = IEEEsentences(HarvardLink)
-    #Create list of voices and names 
-    voices , names = read_voices(Path(voice_path))
 
     #Text to speech 
-    _IEEE_to_speech(IEEE, voices, names)
-    _gibberish_to_speech(sent, voices, names)
+    texttospeech(IEEE, voice_path, "IEEE")
+    texttospeech(sent, voice_path, "Gib")
+
+
+
+
+
 
 
 # //TODO I dont know what this does but I think it makes it so you can call the inputs
