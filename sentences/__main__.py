@@ -4,7 +4,7 @@ from typing_extensions import Annotated
 from .download_handler import download, downloadIEEE
 from .word_handler import split_words
 from .sentence_handler import build_sentence
-from .storage_handler import readjson, write_json, write_csv, read_csv
+from .storage_handler import readjson, write_json, write_csv, read_csv, read_voices
 from .text_to_speech import _IEEE_to_speech, _gibberish_to_speech
 import time
 
@@ -102,6 +102,9 @@ def run(
     ] = r".\gibberishsentences.csv",
     wav_path: Annotated[str, typer.Option(prompt="Name of wav files")] = "sentence",
     # Input number of sentences to create, Number of words in sentences, number of one syl and number 2 syl.
+    voice_path:  Annotated[
+        str, typer.Option(prompt="Path to the sorted sentence list")
+    ] = r".\Voices.csv",
     num_sent: Annotated[int, typer.Option(prompt="Number of sentences to make")] = 72,
     words_insent: Annotated[
         int, typer.Option(prompt="Number of words per sentence")
@@ -119,25 +122,14 @@ def run(
     sent = _get_sentences(
         Path(sent_path), num_sent, words_insent, one_syllwords, two_syllwords, words
     )
+    #Get IEEE sentences
     IEEE = IEEEsentences(HarvardLink)
+    #Create list of voices and names 
+    voices , names = read_voices(Path(voice_path))
 
-    #voice="pNInz6obpgDQGcFmaJgB"  # sets voice to "Adam"
-    #name = "Adam0.1"
-    #name = 'Clancy0.6'
-    #voice="FLpz0UhC9a7CIfUSBo6S"  # sets voice to "Clancy"
-    #voice= "hpp4J3VqNfWAUOO0d1Us" # sets voice to Bella
-    #name = 'Bella01'
-    #voice= "3nDq4c7a9Pk3q5rxbMJH" #matthew
-    #name = "MattTest"
-    #voice = "EXAVITQu4vr4xnSDxMaL"
-    #name = 'sarah1'
-    voice= "SAz9YHcvj6GT2YYXdXww"
-    name = 'River'
-
-#// TODO Make it easier to change the Voice and name of the file 
-    _IEEE_to_speech(IEEE, voice, name)
-    _gibberish_to_speech(sent, voice, name)
-
+    #Text to speech 
+    _IEEE_to_speech(IEEE, voices, names)
+    _gibberish_to_speech(sent, voices, names)
 
 
 # //TODO I dont know what this does but I think it makes it so you can call the inputs

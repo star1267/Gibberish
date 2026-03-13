@@ -7,7 +7,7 @@
             "request": "launch",
             "module": "sentences",
             "args":["--num-words","50","--dict-path","./wordlist.json","--sent-path","./Gibsentences.csv", 
-            "--wav-path" , "sentence", 
+            "--wav-path" , "sentence", "--voice-path", "./Voices.csv",
             "--num-sent", "720", "--words-insent", "11", "--one-syllwords", "11", "--two-syllwords", "0"],
             "justMyCode": false
         }

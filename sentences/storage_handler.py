@@ -66,3 +66,23 @@ def write_csv(path, sentences):
         # //TODO I DONT KNOW WHAT this does
         writer.writerows(sentences)
     ...
+
+
+def read_voices (path : Path): 
+    # Creates a list for voices
+    voices = []
+    names = []
+
+    # Opens the file and reads it
+    with open(path, "r") as csv_file:
+        # creates a list of the file content
+        csv_reader = csv.reader(csv_file)
+        # iterates through each line in the file
+        for line in csv_reader:
+            # Creates a new list of just the last column in the file which is the clean sentences
+            voices.append(line[1])
+            names.append(line[0])
+# returns the clean sentences
+    print(voices)
+    return voices, names
+    ...
