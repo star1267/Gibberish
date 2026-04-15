@@ -74,7 +74,7 @@ def read_voices (path : Path):
     names = []
 
     # Opens the file and reads it
-    with open(path, "r") as csv_file:
+    with open(path, "r", encoding='utf-8-sig') as csv_file:
         # creates a list of the file content
         csv_reader = csv.reader(csv_file)
         # iterates through each line in the file
@@ -83,6 +83,6 @@ def read_voices (path : Path):
             voices.append(line[1])
             names.append(line[0])
 # returns the clean sentences
-    print(voices)
+    print(names)
     return voices, names
     ...

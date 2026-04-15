@@ -7,6 +7,7 @@ from .storage_handler import read_voices
 from pathlib import Path
 
 def texttospeech(Stim, voice_path, stimtype): 
+    """ This function is used to Text to speech the stimuli"""
     #Create list of voices and names by reading csv
     voices , names = read_voices(Path(voice_path))
 
@@ -17,24 +18,25 @@ def texttospeech(Stim, voice_path, stimtype):
     elevenlabs = ElevenLabs( #tells 11labs what the api key is 
         api_key= apikey,
     )
-    current_time = datetime.now().strftime("%Y-%m-%d-%I-%M-%S") #calculates current time 
 
-    parent_folder = "WavStorage"
+    current_time = datetime.now().strftime("%Y-%m-%d-%I-%M-%S") #calculates current time 
+    parent_folder = "WavStorage" #parent folder to our stimulit 
     subfolderTime = f'{current_time}' #unique file name
-    subfolder = "StimuliSamples"
-    foldername = os.path.join(parent_folder, subfolder)
+    subfolder = "April062026" #Name of folder stim are stored in 
+    foldername = os.path.join(parent_folder, subfolder) #checks if folder exists 
     os.makedirs(foldername, exist_ok=True)  # actually creates it
 
-    stab = 0.0
-    length = len(voices)
-    for v in range(length): 
-        voice = voices[v]
-        name = names [v]
-        for i in range (1): #Loops through each sentence 
+    stab = 1 # set stability setting
+    lenvoices = len(voices) #get number of voices
+
+    for v in range(lenvoices): 
+        voice = voices[v] #iterates through voices
+        name = names [v] #iterates through names
+        for i in range (len(Stim)): #Loops through each sentence 
             response = elevenlabs.text_to_speech.convert( ##creates a variable response with contains the audio, calls 11labs function
-                voice_id= voice,  
-                output_format="mp3_44100_128", 
-                text= Stim[i], 
+                voice_id= voice,  #Sets voice for this loop
+                output_format="wav_44100", #file type
+                text= Stim[i], #sets stimulit that will be tts
                 model_id="eleven_turbo_v2_5", # use the turbo model for low latency
                 # Optional voice settings that allow you to customize the output
                 voice_settings=VoiceSettings(
@@ -47,7 +49,7 @@ def texttospeech(Stim, voice_path, stimtype):
             )
             
             #filename = f'{stimtype}{current_time}_{i+1}.mp3' #Unique file name with current time
-            filename = f"{stimtype}{name}{stab}.mp3"
+            filename = f"{"Newsenteces"}{stimtype}{name}{i+1}.wav"
             save_file_path = os.path.join(foldername, filename) #Makes file save to the new folder '
 
             # Writing the audio to a file
@@ -55,7 +57,5 @@ def texttospeech(Stim, voice_path, stimtype):
                 for chunk in response:
                     if chunk:
                         f.write(chunk)
-            print(f"{save_file_path}: A new audio file was saved successfully!")
-            # Return the path of the saved audio file
         ...
     ...

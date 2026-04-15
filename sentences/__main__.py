@@ -80,7 +80,7 @@ print(_get_words.__doc__)
 
 
 def IEEEsentences(HarvardLink):
-    json = "./IEEEsentences.json"  # Need to add this as an input
+    json = "./Bella512.json"  # Need to add this as an input
     IEEE = readjson(json)
     if not IEEE:
         IEEE = downloadIEEE(HarvardLink)
@@ -99,7 +99,7 @@ def run(
     # Input the name of a list of sentneces
     sent_path: Annotated[
         str, typer.Option(prompt="Path to the sorted sentence list")
-    ] = r".\gibberishsentences.csv",
+    ] = r".\Gibrerun..csv",
     wav_path: Annotated[str, typer.Option(prompt="Name of wav files")] = "sentence",
     # Input number of sentences to create, Number of words in sentences, number of one syl and number 2 syl.
     voice_path:  Annotated[
@@ -127,10 +127,7 @@ def run(
 
     #Text to speech 
     texttospeech(IEEE, voice_path, "IEEE")
-    texttospeech(sent, voice_path, "Gib")
-
-
-
+    #texttospeech(sent, voice_path, "Gib")
 
 
 

@@ -20,6 +20,13 @@ Storage
 WavStorage
 
 
+**/*.mp3
+**/*.wav
+**/*.png
+**/*.csv
+**/*.json
+
+
 # Distribution / packaging
 .Python
 build/
