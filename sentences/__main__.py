@@ -1,6 +1,7 @@
 from pathlib import Path
 import typer
 from typing_extensions import Annotated
+
 from .download_handler import download, downloadIEEE
 from .word_handler import split_words
 from .sentence_handler import build_sentence
@@ -52,7 +53,6 @@ def _get_words(path: Path, num_words: int):
         print("wordlist not found ")
         print("the rest of this needs to be fixed")
 
-        # //TODO  this needs to be fixed because the website was changed so it is not reading any words
         # creates an empty dic for words
         words = {}
         # iterations is the number of words requested/50 because there is 50 words on each reloaded soybomb page
@@ -80,7 +80,7 @@ print(_get_words.__doc__)
 
 def IEEEsentences(HarvardLink):
     json = "./IEEEsentences.json"  # Need to add this as an input
-    IEEE = readjson(json)
+    IEEE = readjson(json) 
     if not IEEE:
         IEEE = downloadIEEE(HarvardLink)
         write_json(json, IEEE)
@@ -128,10 +128,5 @@ def run(
     texttospeech(IEEE, voice_path, "IEEE")
     #texttospeech(sent, voice_path, "Gib")
 
-
-
-
-# //TODO I dont know what this does but I think it makes it so you can call the inputs
 if __name__ == "__main__":
     app()
-# python -m sentences --num-words 10 --dict-path .\words.json --sent-path .\sent.json
