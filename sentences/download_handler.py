@@ -13,19 +13,13 @@ def download(url, iterations):
         page = requests.get(url)
         # creates a nested object of the website 
         soup = BeautifulSoup(page.text, "html.parser")
-        #print(soup.prettify())
-        #print(soup.get_text())
 
-    ##This chunk of code does not work anymore
-    # Finds all the words that are bold
-    Gibberish = soup.find_all("grid-item")
-    # for each word in Gibberish, it stores the ones that dont have "" and \n
-    # for gibberish in Gibberish:
-    #    if (" " not in gibberish.text) and ("\n" not in gibberish.text):
-    #        words.append(gibberish.text)
+        paragraphs = soup.find_all('span')
+        for i in range (len(paragraphs)):
+            print(paragraphs[i].text)
+            words.append(paragraphs[i].text) 
 
-    # Returns the dict of words
-    print(Gibberish)
+
     return words
 
 

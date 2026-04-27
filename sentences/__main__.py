@@ -9,8 +9,7 @@ from .text_to_speech import texttospeech
 import time
 
 
-# // TODO I dont know what this line does
-# I think this is part of inputting values
+# create command line inputs 
 app = typer.Typer()
 
 URL = "https://www.soybomb.com/tricks/words/"  # This is the URL for a website that makes gibberish sentences
@@ -80,7 +79,7 @@ print(_get_words.__doc__)
 
 
 def IEEEsentences(HarvardLink):
-    json = "./Bella512.json"  # Need to add this as an input
+    json = "./IEEEsentences.json"  # Need to add this as an input
     IEEE = readjson(json)
     if not IEEE:
         IEEE = downloadIEEE(HarvardLink)
@@ -99,7 +98,7 @@ def run(
     # Input the name of a list of sentneces
     sent_path: Annotated[
         str, typer.Option(prompt="Path to the sorted sentence list")
-    ] = r".\Gibrerun..csv",
+    ] = r".\Gibrerun.csv",
     wav_path: Annotated[str, typer.Option(prompt="Name of wav files")] = "sentence",
     # Input number of sentences to create, Number of words in sentences, number of one syl and number 2 syl.
     voice_path:  Annotated[
