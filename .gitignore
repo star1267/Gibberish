@@ -1,17 +1,31 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+#__pycache__/
 *.py[codz]
 *$py.class
 
+## Ignore Tess Added 
 
-Storage/
-age/
+age 
 key.txt
-secrets.age
-secrets.yaml
-
+secrets.yaml 
+*yaml
+.sops/*
+!.sops/*.enc.*
+*wav 
+Storage 
+*.txt
+*mp3
 # C extensions
 *.so
+WavStorage
+
+
+**/*.mp3
+**/*.wav
+**/*.png
+**/*.csv
+**/*.json
+
 
 # Distribution / packaging
 .Python

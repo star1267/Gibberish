@@ -1,35 +1,34 @@
 from bs4 import BeautifulSoup
 import requests
 
-##TYPING to see if i can figure this out 
 def download(url, iterations):
     """Create empty dict, scrap website in iterations, save only gibberish words, return words dict"""
-    # Creates a empty list for words 
-    words = []
-    # reloads the webiste iteration number of times to get new words 
+    
+    words = []# Creates a empty list for words
+
+    # reloads the webiste iteration number of times to get new words
     for i in range(iterations):
-        # //TODO dont know what this line does but I think it stores the webiste infromation 
-        page = requests.get(url)
-        # //TODO DOnt know what this does but I think it takes just the text from the webiste 
+        page = requests.get(url) #gets info from webstire 
+        # creates a nested object of the website 
         soup = BeautifulSoup(page.text, "html.parser")
-        # Finds all the words that are bold
-        Gibberish = soup.find_all("b")
-        # for each word in Gibberish, it stores the ones that dont have "" and \n
-        for gibberish in Gibberish:
-            if (" " not in gibberish.text) and ("\n" not in gibberish.text):
-                words.append(gibberish.text)
-    # Returns the dict of words 
-    return words 
+
+        paragraphs = soup.find_all('span') #gets sections of website that are labeled as 'span' 
+
+        #loops through all the words to get just the text and not html info
+        for paragraph in paragraphs:
+            words.append(paragraph.text) 
+
+    return words #returns a list of words 
 
 
-def downloadIEEE(site): 
-    IEEE=[]
-    page = requests.get(site)
-        # //TODO DOnt know what this does but I think it takes just the text from the webiste 
-    soup = BeautifulSoup(page.text, "html.parser")
-        # Finds all the words that are bold
-    HarvardSentences = soup.find_all("li")
-    for sentences in HarvardSentences: 
+def downloadIEEE(site):
+    """Scraps and downloads list of IEEE sentences"""
+    IEEE = []
+    page = requests.get(site) #gets info from site 
+    
+    soup = BeautifulSoup(page.text, "html.parser") #soups the page info 
+    HarvardSentences = soup.find_all("li") #finds all words labeled as <li> 
+    for sentences in HarvardSentences:
         IEEE.append(sentences.text)
 
-    return (IEEE)
+    return IEEE #returns IEEE sentences 
