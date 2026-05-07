@@ -13,7 +13,6 @@ secrets.yaml
 !.sops/*.enc.*
 *wav 
 Storage 
-*.txt
 *mp3
 # C extensions
 *.so
