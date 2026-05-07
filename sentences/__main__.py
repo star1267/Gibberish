@@ -1,7 +1,6 @@
 from pathlib import Path
 import typer
 from typing_extensions import Annotated
-
 from .download_handler import download, downloadIEEE
 from .word_handler import split_words
 from .sentence_handler import build_sentence
@@ -9,13 +8,11 @@ from .storage_handler import readjson, write_json, write_csv, read_csv, read_voi
 from .text_to_speech import texttospeech
 import time
 
-
 # create command line inputs 
 app = typer.Typer()
 
 URL = "https://www.soybomb.com/tricks/words/"  # This is the URL for a website that makes gibberish sentences
 HarvardLink = "https://www.cs.columbia.edu/~hgs/audio/harvard.html"  # This is a link to the harvard sentences
-
 
 # Path is the name of the csv file the sentences are stored in. Num_sent: number of sentences that are generated.
 # one_syllwords: # one syll words, two_syllwords: # two syllable words, words: loads the dict of words
@@ -78,16 +75,17 @@ def _get_words(path: Path, num_words: int):
 print(_get_words.__doc__)
 
 
-def IEEEsentences(HarvardLink):
-    json = "./IEEEsentences.json"  # Need to add this as an input
-    IEEE = readjson(json) 
+def IEEEsentences(HarvardLink, ieee_path):
+    """reads in the json with the IEEE sentences, or scraps the harvard sentences website for the sentences"""
+    #json = "./IEEEsentences.json"  # Need to add this as an input
+    IEEE = readjson(ieee_path) 
     if not IEEE:
         IEEE = downloadIEEE(HarvardLink)
-        write_json(json, IEEE)
+        write_json(ieee_path, IEEE)
     return IEEE
 
 
-@app.command()  # //TODO I dont know what this does but I think it makes it so that the things below can be put in as inputs
+@app.command()  
 def run(
     # Input number of words to find
     num_words: Annotated[int, typer.Option(prompt="Number of words to find")] = 100,
@@ -97,13 +95,14 @@ def run(
     ] = r".\wordlist.json",
     # Input the name of a list of sentneces
     sent_path: Annotated[
-        str, typer.Option(prompt="Path to the sorted sentence list")
+        str, typer.Option(prompt="Path to the gibberish list")
     ] = r".\Gibrerun.csv",
-    wav_path: Annotated[str, typer.Option(prompt="Name of wav files")] = "sentence",
-    # Input number of sentences to create, Number of words in sentences, number of one syl and number 2 syl.
     voice_path:  Annotated[
         str, typer.Option(prompt="Path to the sorted sentence list")
     ] = r".\Voices.csv",
+    ieee_path:  Annotated[
+        str, typer.Option(prompt="Path to the IEEE sentence list")
+    ] = r"./IEEEsentences.json",
     num_sent: Annotated[int, typer.Option(prompt="Number of sentences to make")] = 72,
     words_insent: Annotated[
         int, typer.Option(prompt="Number of words per sentence")
@@ -122,11 +121,11 @@ def run(
         Path(sent_path), num_sent, words_insent, one_syllwords, two_syllwords, words
     )
     #Get IEEE sentences
-    IEEE = IEEEsentences(HarvardLink)
+    IEEE = IEEEsentences(HarvardLink, ieee_path)
 
     #Text to speech 
     texttospeech(IEEE, voice_path, "IEEE")
-    #texttospeech(sent, voice_path, "Gib")
+    texttospeech(sent, voice_path, "Gib")
 
 if __name__ == "__main__":
     app()

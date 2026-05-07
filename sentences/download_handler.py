@@ -22,6 +22,7 @@ def download(url, iterations):
 
 
 def downloadIEEE(site):
+    """Scraps and downloads list of IEEE sentences"""
     IEEE = []
     page = requests.get(site) #gets info from site 
     

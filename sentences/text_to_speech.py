@@ -11,7 +11,8 @@ def texttospeech(Stim, voice_path, stimtype):
     #Create list of voices and names by reading csv
     voices , names = read_voices(Path(voice_path))
 
-    ## Load encrypted file 
+    ## Load yaml file that has api key stored 
+        ##You will have to create this file with your own API key
     with open ('secrets.yaml', 'r') as f:  #opens yaml with apikey
         secrets = yaml.safe_load(f)
     apikey = (secrets ['secrets'] ['elevenlabs']['apikey']) #read and store API key
