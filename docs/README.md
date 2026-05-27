@@ -1,5 +1,5 @@
 # Description of Project
-This project scraps words from the nonesense word generated Soybomb.com and uses those words to make gibberish sentences that are then text to speech and saved as wav files. 
+This project scraps words from the nonsense word generated Soybomb.com and uses those words to make gibberish sentences that are then text to speech and saved as wav files. 
 
 # Project Files 
 - main.py - main file where all the functions are called from 
